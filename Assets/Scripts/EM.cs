@@ -24,6 +24,7 @@ public class EM : MonoBehaviour
             
             if (pathIndex == LevelManager.main.path.Length)
             {
+                EnemySpawner.onEnemyDestroyed.Invoke();
                 Destroy(gameObject);
                 return;
             }
