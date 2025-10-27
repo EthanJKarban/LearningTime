@@ -6,12 +6,17 @@ public class Turrent : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform turrentRotationPoint;
     [SerializeField] LayerMask enemyMask;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+
 
     [Header("Attribute")]
     [SerializeField] private float targettingRange = 5f;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float bps = 1f; //Bullets per second
 
     private Transform target;
+    private float timeUntilFire;
 
 
     private void Update()
@@ -21,13 +26,29 @@ public class Turrent : MonoBehaviour
             FindTarget();
             return;
         }
-
-        RotateTorwardsTarget();
+        
+            RotateTorwardsTarget();
 
         if (!CheckTargetIsInRange())
         {
             target = null;
         }
+        else
+        {
+            timeUntilFire += Time.deltaTime;
+
+            if(timeUntilFire >= 1f / bps)
+            {
+                Shoot();
+                timeUntilFire = 0f;
+            }
+        }
+    }
+    private void Shoot()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+        bulletScript.SetTarget(target);
     }
     private void FindTarget()
     {
