@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private int bulletDamage = 1;
+    [SerializeField] private StatusEffect statusEffect;
+    [SerializeField] private float tickRate;
 
     private Transform target;
 
@@ -24,6 +26,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (statusEffect)
+        {
+            other.gameObject.GetComponent<StatusEffectInstance>().effect = statusEffect;
+        }
         other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
         Destroy(gameObject);
     }

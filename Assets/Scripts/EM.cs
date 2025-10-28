@@ -7,7 +7,7 @@ public class EM : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     [Header("Attributes")]
-    [SerializeField] private float moveSpeed = 2f;
+    public float moveSpeed = 2f;
 
     private Transform targets;
     private int pathIndex = 0;

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 616919519239307368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.388, z: 0}
+  m_LocalPosition: {x: 0, y: 0.186, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 7785627181014849503}
   - component: {fileID: 6223036072011081641}
   m_Layer: 0
-  m_Name: Turrent
+  m_Name: TestTurrent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,9 +116,9 @@ MonoBehaviour:
     m_Bits: 64
   bulletPrefab: {fileID: 7286467644557767551, guid: 835061aba9231be4e9d4d6ee9c1bdff9, type: 3}
   firePoint: {fileID: 8912479889077642431}
-  targettingRange: 5
-  rotationSpeed: 200
-  bps: 1
+  targettingRange: 7
+  rotationSpeed: 300
+  bps: 4
 --- !u!1 &3205498975761754346
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ SpriteRenderer:
   m_SortingLayerID: -210174145
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -696447309709696781, guid: 9ffd3f291e4f6ee4ba30d27179c5b890, type: 3}
+  m_Sprite: {fileID: 3343975756315492639, guid: c30fe3cb44f28c848a71d73667a4c96a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -282,10 +282,10 @@ SpriteRenderer:
   m_SortingLayerID: -210174145
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7281945737759551322, guid: 9ffd3f291e4f6ee4ba30d27179c5b890, type: 3}
+  m_Sprite: {fileID: -147381578704910095, guid: c30fe3cb44f28c848a71d73667a4c96a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
