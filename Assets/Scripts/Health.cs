@@ -1,9 +1,12 @@
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
     [Header("Attributes")]
     public int hitPoints = 2;
+    //public float stunImmunityTimer;
+
     [SerializeField] private int currencyMoolah = 5;
 
     private bool isDestroyed = false;

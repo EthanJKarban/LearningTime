@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d5e52d467509354884e9334c0c8913c, type: 3}
   m_Name: New Freeze Effect
   m_EditorClassIdentifier: 
+  tickRate: 0
+  duration: 2.5
+  slowPercentage: 0.15

@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45a71f692069ab46a9c00e925b9c822, type: 3}
   m_Name: New Poison Effect
   m_EditorClassIdentifier: 
+  tickRate: 0.4
+  duration: 5
+  slowPercentage: 0.98
+  damagePerTick: 1

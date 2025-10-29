@@ -5,10 +5,19 @@ using UnityEngine;
 public class StunEffect : StatusEffect
 {
     public bool stunImmunity;
+    public float stunImmunityTimer;
 
     public override void Apply(EM movement, Health health)
     {
-        movement.moveSpeed = 0f;
+        if(stunImmunity == true)
+        {
+            return;
+        }
+        else
+        {
+            movement.moveSpeed = 0f;
+        }
+            
     }
 
     public override void Tick(EM movement, Health health)
@@ -19,5 +28,13 @@ public class StunEffect : StatusEffect
     public override void Remove(EM movement, Health health)
     {
         movement.moveSpeed = movement.baseSpeed;
+        stunImmunity = false;
+       StunImmunityCooldown();
+
+    }
+    IEnumerator StunImmunityCooldown()
+    {
+        yield return new WaitForSeconds(stunImmunityTimer);
+        stunImmunity = true;
     }
 }

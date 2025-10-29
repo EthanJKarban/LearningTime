@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c0baebc2add4747a0158114bd178b4, type: 3}
   m_Name: New Stun Effect
   m_EditorClassIdentifier: 
+  tickRate: 1e+10
+  duration: 2
+  stunImmunity: 0
+  stunImmunityTimer: 3

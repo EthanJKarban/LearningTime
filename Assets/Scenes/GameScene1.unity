@@ -2773,10 +2773,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab:
   - {fileID: 7220364336810047143, guid: 61d8c65ae1f9ec8478a200c2770c692f, type: 3}
-  baseEnemies: 8
+  baseEnemies: 1
   enemiesPerSeconds: 5
   timeBetweenWaves: 1
-  difficultyFactor: 10
+  difficultyFactor: 0.75
 --- !u!114 &390648253
 MonoBehaviour:
   m_ObjectHideFlags: 0

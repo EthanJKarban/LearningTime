@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ad763079c95764596cbeec827da8ea, type: 3}
   m_Name: New Burn Effect
   m_EditorClassIdentifier: 
+  tickRate: 1
+  duration: 5
+  damagePerTick: 2
