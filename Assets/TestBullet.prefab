@@ -168,3 +168,5 @@ MonoBehaviour:
   rb: {fileID: 1110108476779954561}
   bulletSpeed: 5
   bulletDamage: 1
+  statusEffect: {fileID: 11400000, guid: dc056b675fb944140a39de3f0d509eed, type: 2}
+  tickRate: 0

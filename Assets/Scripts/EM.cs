@@ -8,12 +8,14 @@ public class EM : MonoBehaviour
 
     [Header("Attributes")]
     public float moveSpeed = 2f;
+    [HideInInspector] public float baseSpeed;
 
     private Transform targets;
     private int pathIndex = 0;
     void Start()
     {
         targets = LevelManager.main.path[pathIndex];
+        baseSpeed = moveSpeed;
     }
 
     void Update()

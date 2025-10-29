@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     {
         if (statusEffect)
         {
-            other.gameObject.GetComponent<StatusEffectInstance>().effect = statusEffect;
+            other.gameObject.GetComponent<StatusEffectInstance>().Apply(statusEffect);
         }
         other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
         Destroy(gameObject);
