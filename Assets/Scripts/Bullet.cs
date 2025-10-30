@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,12 +11,16 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int bulletDamage = 1;
     [SerializeField] private StatusEffect statusEffect;
     [SerializeField] private float tickRate;
+    [SerializeField] private float bulletLifetime = 5f;
+    
+    private float lifetimeTimer;
 
     private Transform target;
 
     public void SetTarget(Transform _target)
     {
         target = _target;
+
     }
     private void FixedUpdate()
     {   if (!target)return;
@@ -23,6 +28,16 @@ public class Bullet : MonoBehaviour
         Vector2 direction = (target.position - transform.position).normalized;
 
         rb.linearVelocity = direction * bulletSpeed;
+
+    }
+    private void Update()
+    {
+        lifetimeTimer += Time.deltaTime;
+        if (lifetimeTimer >= bulletLifetime)
+        {
+            Destroy(gameObject);
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -33,4 +48,5 @@ public class Bullet : MonoBehaviour
         other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
         Destroy(gameObject);
     }
+   
 }

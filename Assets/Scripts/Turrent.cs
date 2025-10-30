@@ -4,7 +4,7 @@ using UnityEditor;
 public class Turrent : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Transform turrentRotationPoint;
+    public Transform turrentRotationPoint;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
