@@ -5,7 +5,8 @@ public class BuildManager : MonoBehaviour
     public static BuildManager main;
 
     [Header("References")]
-    [SerializeField] private GameObject[] towerPrefabs;
+    //[SerializeField] private GameObject[] towerPrefabs;  (This was the testing one, I used that spawned 1 on click generally just ignore this one)
+    [SerializeField] private Tower[] towers;
 
     private int selectedTower = 0;
     private void Awake()
@@ -13,8 +14,13 @@ public class BuildManager : MonoBehaviour
         main = this;
     }
 
-    public GameObject GetSelectedTower()
+    public Tower GetSelectedTower()
     {
-        return towerPrefabs[selectedTower];
+        return towers[selectedTower];
+    }
+
+    public void SetSelectedTower(int _selectedTower)
+    {
+        selectedTower = _selectedTower;
     }
 }

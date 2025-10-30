@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public int hitPoints = 2;
     //public float stunImmunityTimer;
 
-    [SerializeField] private int currencyMoolah = 5;
+    [SerializeField] private int currencyMoolah = 50;
 
     private bool isDestroyed = false;
     public void TakeDamage(int damage)

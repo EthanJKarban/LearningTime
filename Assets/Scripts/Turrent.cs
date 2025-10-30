@@ -63,7 +63,7 @@ public class Turrent : MonoBehaviour
     {
         return Vector2.Distance(target.position, transform.position) <= targettingRange;
     }
-    private void RotateTorwardsTarget()
+    public void RotateTorwardsTarget()
     {
         float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
