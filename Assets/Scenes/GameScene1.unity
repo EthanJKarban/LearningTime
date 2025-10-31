@@ -2743,7 +2743,7 @@ MonoBehaviour:
   - {fileID: 153025838}
   - {fileID: 1075058222}
   - {fileID: 1800584701}
-  currency: 0
+  currency: 100
 --- !u!4 &390648251
 Transform:
   m_ObjectHideFlags: 0
@@ -2790,12 +2790,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towers:
-  - name: 
-    cost: 0
-    prefab: {fileID: 0}
-  - name: 
-    cost: 0
-    prefab: {fileID: 0}
+  - name: Basic Turret
+    cost: 100
+    prefab: {fileID: 1198252364455609520, guid: 9b041b0f8eeabbe48beef2bc70548a4b, type: 3}
+  - name: Stinger Turret
+    cost: 150
+    prefab: {fileID: 1198252364455609520, guid: 67d890802d48d344ca86d7566bea0474, type: 3}
 --- !u!1001 &391855742
 PrefabInstance:
   m_ObjectHideFlags: 0

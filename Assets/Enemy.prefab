@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa3e6373b28af4498060078ced1d60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 20
-  currencyMoolah: 5
+  hitPoints: 10
+  currencyMoolah: 50
 --- !u!114 &-5991754450385232083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +197,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 0}
+  effects: []
