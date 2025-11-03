@@ -15,4 +15,4 @@ MonoBehaviour:
   tickRate: 0.4
   duration: 5
   slowPercentage: 0.98
-  damagePerTick: 1
+  damagePerTick: 0.3

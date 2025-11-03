@@ -4,7 +4,7 @@ using UnityEngine;
 public class PoisonEffect : StatusEffect
 {
     public float slowPercentage; // Percentage to which it will slow the target using multiplication with decimals. (example: 0.5 = 50% speed)
-    public int damagePerTick; 
+    public float damagePerTick; 
 
     public override void Apply(EM movement, Health health)
     {

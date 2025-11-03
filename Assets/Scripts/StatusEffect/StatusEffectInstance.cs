@@ -1,11 +1,12 @@
 
-using NUnit.Framework;
-using UnityEditor;
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StatusEffectInstance : MonoBehaviour
 {
-    public StatusEffect effect;
+    
+    public List<StatusEffect> effects;
     private EM movement;
     private Health health;
 
@@ -14,35 +15,44 @@ public class StatusEffectInstance : MonoBehaviour
 
     public void Awake()
     {
+        
         movement = GetComponent<EM>();
         health = GetComponent<Health>();
     }
 
     public void Update()
     {
-        if (!effect) return; // If no effect happens instead of it having a stroke it will now just return nothing and chill out.
-
         tickTimer += Time.deltaTime;
-        if (tickTimer > effect.tickRate) // If the tick timer is bigger than the tick rate it will tick down, doing damage.
-        {
-            effect.Tick(movement, health);
-            tickTimer = 0f;
-            Debug.Log("Ticking down");
-        }
-
         duration += Time.deltaTime;
-        if (duration > effect.duration)  // Duration, when the duration is bigger than effect duration it removes the effect, by turning it null.
+
+        foreach (var item in effects) 
         {
-            effect.Remove(movement, health);
-            effect = null;
-            Debug.Log("Effect ended.");
+            if (tickTimer > item.tickRate) // If the tick timer is bigger than the tick rate it will tick down, doing damage.
+            {
+                item.Tick(movement, health);
+                tickTimer = 0f;
+                Debug.Log("Ticking down");
+            }
+
+            if (duration > item.duration)  // Duration, when the duration is bigger than effect duration it removes the effect, by turning it null.
+            {
+                item.Remove(movement, health);
+                effects.Remove(item);
+                Debug.Log("Effect ended.");
+                break;
+            }
         }
     }
 
     public void Apply(StatusEffect newEffect) // Will apply a new effect and reset duration.
     {
-        effect = newEffect;
-        effect.Apply(movement, health);
+        if(effects.Contains(newEffect))
+        {
+            duration = 0f;
+            return; // If it already contains the effect, it will not apply it again.
+        }
+        effects.Add(newEffect);
+        newEffect.Apply(movement, health);
         duration = 0f;
         Debug.Log("Afflicted with a status effect.");
     }

@@ -2774,7 +2774,7 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 7220364336810047143, guid: 61d8c65ae1f9ec8478a200c2770c692f, type: 3}
   baseEnemies: 8
-  enemiesPerSeconds: 5
+  enemiesPerSeconds: 0.9
   timeBetweenWaves: 1
   difficultyFactor: 0.75
 --- !u!114 &390648253
@@ -11729,7 +11729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e0f960c042e9040a6390ecc08505ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyTextUI: {fileID: 1319520273}
+  currencyUI: {fileID: 1319520273}
 --- !u!1001 &2040377936
 PrefabInstance:
   m_ObjectHideFlags: 0

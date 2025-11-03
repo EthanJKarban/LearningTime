@@ -7,6 +7,7 @@ public class FreezeEffect : StatusEffect
 
     public override void Apply(EM movement, Health health)
     {
+        
         movement.moveSpeed *= slowPercentage;
         if (movement.moveSpeed < 0.25f)
         {

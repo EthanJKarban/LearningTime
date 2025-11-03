@@ -4,13 +4,13 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Attributes")]
-    public int hitPoints = 2;
+    public float hitPoints = 2;
     //public float stunImmunityTimer;
 
     [SerializeField] private int currencyMoolah = 50;
 
     private bool isDestroyed = false;
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         hitPoints -= damage;
         

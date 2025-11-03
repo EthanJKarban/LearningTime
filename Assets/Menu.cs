@@ -5,11 +5,11 @@ public class Menu : MonoBehaviour
 {
 
     [Header("References")]
-    [SerializeField] private TextMeshProUGUI currencyTextUI;
+    [SerializeField] private TextMeshProUGUI currencyUI;
 
     private void OnGUI()
     {
-        currencyTextUI.text = LevelManager.main.currency.ToString();
+        currencyUI.text = LevelManager.main.currency.ToString();
     }
     public void SetSelected()
     {
