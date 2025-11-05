@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float enemiesPerSeconds = 0.5f;
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float difficultyFactor = 0.75f;
+    [SerializeField] private float enemiesPerSecondCap = 10f;
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroyed = new UnityEvent();
@@ -24,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     private float timeSinceLastSpawn = 0f;
     private int enemiesAlive;
     private int enemiesLeftToSpawn;
+    private float eps; //enemies per second
     private bool isSpawning = false;
 
     private void Awake()
@@ -39,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         if (!isSpawning) return; 
         timeSinceLastSpawn += Time.deltaTime;
 
-        if(timeSinceLastSpawn >= (1f / enemiesPerSeconds) && enemiesLeftToSpawn > 0)
+        if(timeSinceLastSpawn >= (1f / eps) && enemiesLeftToSpawn > 0)
         {
             SpawnEnemy();
             enemiesLeftToSpawn--;
@@ -60,6 +62,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator StartWave()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
+        eps = EnemiesPerSecond();
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
     }
@@ -73,12 +76,16 @@ public class EnemySpawner : MonoBehaviour
     }
    
     private void SpawnEnemy()
-    {
-        GameObject prefabToSpawn = enemyPrefab[0];
+    {   int index = Random.Range(0, enemyPrefab.Length);
+        GameObject prefabToSpawn = enemyPrefab[index];
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
     }
     private int EnemiesPerWave()
     {
         return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyFactor));
+    }
+    private float EnemiesPerSecond()
+    {
+        return Mathf.RoundToInt(Mathf.Clamp((enemiesPerSeconds * Mathf.Pow(currentWave, difficultyFactor)), 0f, enemiesPerSecondCap));
     }
 }

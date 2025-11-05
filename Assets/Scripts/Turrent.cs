@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class Turrent : MonoBehaviour
 {
@@ -8,17 +9,31 @@ public class Turrent : MonoBehaviour
     [SerializeField] LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
-
+    [SerializeField] private GameObject upgradeUI;
+    [SerializeField] private Button upgradeButton;
 
     [Header("Attribute")]
     [SerializeField] private float targettingRange = 5f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float bps = 1f; //Bullets per second
+    [SerializeField] private int baseUpgradeCost = 50;
+
+
+    private float bpsBase;
+    private float targettingRangeBase;
 
     private Transform target;
     private float timeUntilFire;
 
+    private int level = 1;
 
+    private void Start()
+    {
+        bpsBase = bps;
+        targettingRangeBase = targettingRange;
+
+        upgradeButton.onClick.AddListener(UpgradeTurret);
+    }
     private void Update()
     {
         if (target == null)
@@ -70,6 +85,47 @@ public class Turrent : MonoBehaviour
 
         turrentRotationPoint.rotation = Quaternion.RotateTowards(turrentRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         
+    }
+    public void OpenUpgradeUI()
+    {
+        upgradeUI.SetActive(true);
+    }
+
+    public void CloseUpgradeUI()
+    {
+        upgradeUI.SetActive(false);
+        UIManager.main.SetHoverUIState(false);
+    }
+
+    public void UpgradeTurret()
+    {
+        if (baseUpgradeCost > LevelManager.main.currency)
+        {
+            LevelManager.main.SpendCurrency(baseUpgradeCost);
+        }
+        level++;
+
+        bps = CalculateBPS();
+        targettingRange = CalculateRange();
+
+        CloseUpgradeUI();
+        Debug.Log("New BPS:" + bps);
+        Debug.Log("New BPS:" + targettingRange);
+        Debug.Log("New Cost " + baseUpgradeCost);
+
+        CloseUpgradeUI();
+    }
+    private int CalculateCost()
+    {
+        return Mathf.RoundToInt(baseUpgradeCost * Mathf.Pow(level,  0.8f));
+    }
+    private float CalculateBPS()
+    {
+        return bpsBase *  Mathf.Pow(level, 0.6f);
+    }
+    private float CalculateRange()
+    {
+        return targettingRangeBase * Mathf.Pow(level, 0.4f);
     }
     private void OnDrawGizmosSelected()
     {

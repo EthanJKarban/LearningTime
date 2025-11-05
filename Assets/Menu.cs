@@ -6,6 +6,7 @@ public class Menu : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private TextMeshProUGUI currencyUI;
+    
 
     private void OnGUI()
     {

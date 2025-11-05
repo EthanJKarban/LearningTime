@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class TurrentSlomo : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private LayerMask EnemyMask;
+    [SerializeField] private LayerMask enemyMask;
 
     [Header("Attributes")]
     [SerializeField] private float targettingRange = 5f;
@@ -19,32 +20,66 @@ public class TurrentSlomo : MonoBehaviour
 
         if (timeUntilFire >= 1f / aps)
         {
-            FreezeEffect();
+
             timeUntilFire = 0f;
+            AreaEffect();
+            
         }
     }
 
-    private void FreezeEffect()
+    private void AreaEffect()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targettingRange, Vector2.up, 0f);
-        for (int i = 0; i < hits.Length; i++)
-        {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targettingRange, Vector2.up, 0f, enemyMask);
+        
+        
             if(hits.Length > 0)
             {
+               for (int i = 0; i < hits.Length; i++)
+               {
                 RaycastHit2D hit = hits[i];
 
 
                 StatusEffectInstance statusEffectInstance = hit.collider.gameObject.GetComponent<StatusEffectInstance>();
-                if (statusEffectInstance != null)
+                if (statusEffect)
                 {
-                    StatusEffect freezeEffect = Resources.Load<StatusEffect>("FreezeEffect");
-                    statusEffectInstance.Apply(freezeEffect);
-                    Debug.Log("HONEY WHERE IS MY SUPER SUIT?!");
+                    Debug.Log("Effected");
+                    Applying();
+                }
+                else if (!statusEffect)
+                {
+                    Debug.Log("No status effect assigned to turret.");
+                }
+                else if(!statusEffectInstance)
+                {
+                    Debug.Log("They are immune to status effects.");
                 }
             }
+                
+            }
            
+        
+    }
+    private void Applying()
+    {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targettingRange, Vector2.up, 0f, enemyMask);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit2D hit = hits[i];
+            StatusEffectInstance statusEffectInstance = hit.collider.gameObject.GetComponent<StatusEffectInstance>();
+            if (statusEffectInstance)
+            {
+                timeUntilFire = 0f;
+                statusEffectInstance.Apply(statusEffect);
+            }
         }
     }
+    //private void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    if (statusEffect)
+    //    {
+
+    //    }
+    //}
     private void OnDrawGizmosSelected()
     {
         Handles.color = Color.cyan;
