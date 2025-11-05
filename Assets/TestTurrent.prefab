@@ -117,11 +117,12 @@ MonoBehaviour:
     m_Bits: 64
   bulletPrefab: {fileID: 7286467644557767551, guid: a2fd6a8b834208d4294fd216976f92a1, type: 3}
   firePoint: {fileID: 8912479889077642431}
-  upgradeUI: {fileID: 8837592999649522441}
+  upgradeUI: {fileID: 6691066291405552758}
   upgradeButton: {fileID: 7612412260258965038}
   targettingRange: 1.5
   rotationSpeed: 300
   bps: 2.5
+  baseUpgradeCost: 100
 --- !u!1 &1859307895141389967
 GameObject:
   m_ObjectHideFlags: 0
