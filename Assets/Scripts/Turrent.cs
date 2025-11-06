@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class Turrent : MonoBehaviour
@@ -99,10 +98,13 @@ public class Turrent : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        if (baseUpgradeCost > LevelManager.main.currency)
+        if (CalculateCost() > LevelManager.main.currency)
         {
-            LevelManager.main.SpendCurrency(baseUpgradeCost);
+
+            return;
+            
         }
+        LevelManager.main.SpendCurrency(CalculateCost());
         level++;
 
         bps = CalculateBPS();
@@ -111,7 +113,7 @@ public class Turrent : MonoBehaviour
         CloseUpgradeUI();
         Debug.Log("New BPS:" + bps);
         Debug.Log("New BPS:" + targettingRange);
-        Debug.Log("New Cost " + baseUpgradeCost);
+        Debug.Log("New Cost " + CalculateCost());
 
         CloseUpgradeUI();
     }
@@ -127,11 +129,15 @@ public class Turrent : MonoBehaviour
     {
         return targettingRangeBase * Mathf.Pow(level, 0.4f);
     }
+
+#if UNITY_EDITOR
+
     private void OnDrawGizmosSelected()
     {
-        Handles.color = Color.gray;
-        Handles.DrawWireDisc(transform.position, transform.forward, targettingRange);
+        UnityEditor.Handles.color = Color.gray;
+        UnityEditor.Handles.DrawWireDisc(transform.position, transform.forward, targettingRange);
     }
 
+#endif
 
 }

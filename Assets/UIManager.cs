@@ -8,10 +8,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        
-        
-            main = this;
-        
+            main = this; 
     }
 
     public void SetHoverUIState(bool state)

@@ -34,6 +34,7 @@ public class Space : MonoBehaviour
         {
             return;
         }
+
         if (towerObj != null)
         {
             turret.OpenUpgradeUI();

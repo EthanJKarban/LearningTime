@@ -1,5 +1,5 @@
 using Unity.VisualScripting;
-using UnityEditor;
+
 using UnityEngine;
 
 public class TurrentSlomo : MonoBehaviour
@@ -80,9 +80,14 @@ public class TurrentSlomo : MonoBehaviour
 
     //    }
     //}
+
+#if UNITY_EDITOR
+
     private void OnDrawGizmosSelected()
     {
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(transform.position, transform.forward, targettingRange);
+        UnityEditor.Handles.color = Color.cyan;
+        UnityEditor.Handles.DrawWireDisc(transform.position, transform.forward, targettingRange);
     }
+
+#endif
 }

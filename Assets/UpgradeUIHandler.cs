@@ -3,9 +3,7 @@ using UnityEngine.EventSystems;
 
 public class UpgradeUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-   private bool mouse_over = false;
-
-    
+   public bool mouse_over = false;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
