@@ -9,10 +9,13 @@ public class Bullet : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private float bulletDamage = 1;
+    [SerializeField] private float explosionDamage;
     [SerializeField] private StatusEffect statusEffect;
     [SerializeField] private float tickRate;
     [SerializeField] private float bulletLifetime = 5f;
-    
+    [SerializeField] private float explosionRadius;
+    [SerializeField] private bool isExplosive;
+
     private float lifetimeTimer;
     private Transform target;
 
@@ -46,8 +49,32 @@ public class Bullet : MonoBehaviour
         {
             other.gameObject.GetComponent<StatusEffectInstance>().Apply(statusEffect);
         }
+        if (isExplosive)
+        {   
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+            other.gameObject.GetComponent<Health>().TakeDamage(explosionDamage);
+            ExplosionRangeCheck();
+        }
         other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
         Destroy(gameObject);
     }
-   
+    private void ExplosionRangeCheck()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            Health health = collider.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(explosionDamage);
+            }
+
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
+
 }

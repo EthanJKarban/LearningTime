@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45a71f692069ab46a9c00e925b9c822, type: 3}
-  m_Name: New Poison Effect
+  m_Script: {fileID: 11500000, guid: 549c9e3b77e934b4f8c666fcf15bee10, type: 3}
+  m_Name: KnockBackEffect
   m_EditorClassIdentifier: 
-  tickRate: 0.4
-  duration: 8
-  slowPercentage: 0.98
-  damagePerTick: 0.3
+  tickRate: 0
+  duration: 0.1
+  SpeedPercentage: 2
+  damagePerTick: 0
+  KnockedBack: 0
+  KnockBackImmunity: 0
+  KnockBackImmunityTimer: 0
